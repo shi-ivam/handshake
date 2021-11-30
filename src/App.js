@@ -1,7 +1,7 @@
 // -- React and related libs
 import React from "react";
 import { Switch, Route, Redirect } from "react-router";
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 // -- Redux
 import { connect } from "react-redux";
@@ -39,18 +39,18 @@ const App = (props) => {
   return (
     <div>
       <ToastContainer/>
-      <HashRouter>
+      <BrowserRouter>
         <Switch>
-          <Route path="/" exact render={() => <Redirect to="/template/dashboard" />} />
-          <Route path="/template" exact render={() => <Redirect to="/template/dashboard"/>}/>
-          <PrivateRoute path="/template" dispatch={props.dispatch} component={LayoutComponent} />
+          {/* <Route path="/" exact render={() => <Redirect to="/template/dashboard" />} /> */}
+          <Route path="/" exact render={() => <Redirect to="/dashboard"/>}/>
+          <PrivateRoute path="/" dispatch={props.dispatch} component={LayoutComponent} />
           <Route path="/login" exact component={Login} />
           <Route path="/error" exact component={ErrorPage} />
           <Route path="/register" exact component={Register} />
           <Route component={ErrorPage}/>
           <Route path='*' exact={true} render={() => <Redirect to="/error" />} />
         </Switch>
-      </HashRouter>
+      </BrowserRouter>
     </div>
   );
 }

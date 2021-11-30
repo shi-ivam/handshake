@@ -31,15 +31,16 @@ const Layout = (props) => {
         <main className={s.content}>
           <Breadcrumbs url={props.location.pathname} />
           <Switch>
-            <Route path="/template" exact render={() => <Redirect to="template/dashboard"/>} />
-            <Route path="/template/dashboard" exact component={Dashboard}/>
-            <Route path="/template/typography" exact component={Typography} />
-            <Route path="/template/tables" exact component={Tables} />
-            <Route path="/template/notifications" exact component={Notifications} />
-            <Route path="/template/ui-elements" exact render={() => <Redirect to={"/template/ui-elements/charts"} />} />
-            <Route path="/template/ui-elements/charts" exact component={Charts} />
-            <Route path="/template/ui-elements/icons" exact component={Icons} />
-            <Route path="/template/ui-elements/maps" exact component={Maps} />
+            <Route path="/" exact render={() => <Redirect to="/dashboard"/>} />
+            <Route path="/dashboard" exact component={Dashboard}/>
+            <Route path="/create" exact render={() => <h1></h1>}/>
+            {/* <Route path="/typography" exact component={Typography} />
+            <Route path="/tables" exact component={Tables} />
+            <Route path="/notifications" exact component={Notifications} />
+            <Route path="/ui-elements" exact render={() => <Redirect to={"/ui-elements/charts"} />} />
+            <Route path="/ui-elements/charts" exact component={Charts} />
+            <Route path="/ui-elements/icons" exact component={Icons} />
+            <Route path="/ui-elements/maps" exact component={Maps} /> */}
             <Route path='*' exact render={() => <Redirect to="/error" />} />
           </Switch>
         </main>
