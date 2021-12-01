@@ -43,10 +43,10 @@ const App = (props) => {
         <Switch>
           {/* <Route path="/" exact render={() => <Redirect to="/template/dashboard" />} /> */}
           <Route path="/" exact render={() => <Redirect to="/dashboard"/>}/>
-          <PrivateRoute path="/" dispatch={props.dispatch} component={LayoutComponent} />
           <Route path="/login" exact component={Login} />
           <Route path="/error" exact component={ErrorPage} />
           <Route path="/register" exact component={Register} />
+          <PrivateRoute path="/" dispatch={props.dispatch} component={LayoutComponent} />
           <Route component={ErrorPage}/>
           <Route path='*' exact={true} render={() => <Redirect to="/error" />} />
         </Switch>
