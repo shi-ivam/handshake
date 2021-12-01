@@ -12,7 +12,8 @@ import Sidebar from "../Sidebar/Sidebar";
 import Footer from "../Footer/Footer";
 import Breadcrumbs from "../Breadbrumbs/Breadcrumbs";
 import Dashboard from "../../pages/dashboard/Dashboard";
-import Create from '../../pages/create/Create'
+import Create from '../../pages/create/Create';
+import Manage from "../../pages/manage/Manage";
 // import Typography from "../../pages/typography/Typography";
 // import Notifications from "../../pages/notifications/Notifications";
 // import Tables from "../../pages/tables/Tables";
@@ -35,6 +36,7 @@ const Layout = (props) => {
             <Route path="/" exact render={() => <Redirect to="/dashboard"/>} />
             <Route path="/dashboard" exact component={Dashboard}/>
             <Route path="/create" exact render={() => <Create/> }/>
+            <Route path="/manage" exact render={() => <Manage/> }/>
             {/* <Route path="/typography" exact component={Typography} />
             <Route path="/tables" exact component={Tables} />
             <Route path="/notifications" exact component={Notifications} />

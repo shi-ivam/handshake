@@ -38,7 +38,7 @@ const Create = (props) => {
     }
     return (
         <Row>
-            <Col>
+            <Col lg={7}>
 
                 <Form className="p-4">
                     <FormGroup>
