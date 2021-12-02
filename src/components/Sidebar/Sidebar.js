@@ -49,7 +49,7 @@ const Sidebar = (props) => {
           activeItem={props.activeItem}
           header="Create"
           isHeader
-          iconName={<i className={'eva eva-grid-outline'}/>}
+          iconName={<i className={'eva eva-edit-outline'}/>}
           link="/create"
           index="create"
         />

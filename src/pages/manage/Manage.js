@@ -119,7 +119,7 @@ const Manage = (props) => {
                                                     }>
                                                         Payment Url
                                                     </Button>
-                                                    <Button className="w-100" color="danger">
+                                                    <Button className="w-100" color="secondary">
                                                         Delete
                                                     </Button>
                                                 </div>

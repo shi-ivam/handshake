@@ -11,6 +11,7 @@ import LayoutComponent from "./components/Layout/Layout";
 import ErrorPage from "./pages/error/ErrorPage";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
+import Pay from './pages/pay/Pay';
 
 // -- Redux Actions
 import { logoutUser } from "./actions/auth";
@@ -46,6 +47,8 @@ const App = (props) => {
           <Route path="/login" exact component={Login} />
           <Route path="/error" exact component={ErrorPage} />
           <Route path="/register" exact component={Register} />
+          
+          <Route path="/pay" exact render={() => <Pay/> }/>
           <PrivateRoute path="/" dispatch={props.dispatch} component={LayoutComponent} />
           <Route component={ErrorPage}/>
           <Route path='*' exact={true} render={() => <Redirect to="/error" />} />
