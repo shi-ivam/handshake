@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useParams } from "react";
 import { Col, Row, Button } from 'reactstrap';
 import moment from 'moment';
 const Pay = (props) => {
     const [item, setItem] = useState(undefined);
-
+    const id = props.match.params.id;
     useEffect(() => {
         setTimeout(() => {
+            console.log(id);
             setItem({ id: 'invoice-1', title: "Coffee", description: "Some Good Coffee", status: "pending", url: "https://google.com", total: 24.00, items: [{ id: "1", title: "Coffee", description: "Some good coffee", price: 12.00, quantity: 2, total: 24.00 }] }, { id: 'invoice-2', title: "Coffee", description: "Some Good Coffee", status: "pending", url: "https://google.com", total: 24.00, items: [{ id: "1", title: "Coffee", description: "Some good coffee", price: 12.00, quantity: 2, total: 24.00 }] });
         }, 3333)
     }, []);
+    
     return (
         <div className="container">
             <Row className="my-4 mx-1">
@@ -53,7 +55,7 @@ const Pay = (props) => {
                                                 <td>{e.title}</td>
                                                 <td>{e.description}</td>
                                                 <td>{e.quantity}</td>
-                                                <td>{e.price}</td>
+                                                <td>${e.price}</td>
                                             </tr>
                                         })
                                     }
@@ -62,7 +64,7 @@ const Pay = (props) => {
                                     <tr>
                                         <td colSpan="3" className="font-weight-normal">Total</td>
                                         <td className="font-weight-bold">
-                                            {item.total}
+                                            ${item.total}
                                         </td>
                                     </tr>
                                 </tfoot>
