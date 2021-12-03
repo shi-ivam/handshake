@@ -1,0 +1,151 @@
+/**
+ * Customized version of bootstrap using variables from _variables.scss.
+ * This file is loaded via separate loader thus allowing to use original bootstrap classes (e.g. .btn-default) through out the app.
+ */
+.headerLink {
+  overflow-x: hidden;
+  margin-right: 16px;
+}
+
+.headerLink a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-decoration: none;
+  color: #16365f;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.headerLink > a {
+  position: relative;
+  padding: 13px 16px;
+  white-space: nowrap;
+  border-radius: .25rem;
+}
+
+@media (max-width: 767.98px) {
+  .headerLink > a {
+    padding: 13px 32px;
+  }
+}
+
+.headerLink .icon {
+  margin-right: .5rem;
+  max-height: 16px;
+  max-width: 16px;
+  text-align: center;
+}
+
+.headerLink .badge {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: auto;
+  padding: 7px;
+  width: 24px;
+  height: 24px;
+  font-size: 0.875rem;
+  line-height: 8px;
+  font-weight: 400;
+  border-radius: 50%;
+}
+
+@media (max-width: 767.98px) {
+  .headerLink {
+    margin-right: 0;
+  }
+}
+
+a.headerLinkActive {
+  background-color: #4d53e0;
+  border-radius: .25rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #fff;
+}
+
+a.headerLinkActive i {
+  color: white !important;
+}
+
+a.headerLinkActive:hover {
+  color: #fff;
+}
+
+a.headerLinkActive svg path {
+  fill: #fff;
+  stroke: #fff;
+}
+
+.collapsed .caret {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.caret {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: auto;
+  margin-right: 8px;
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret {
+    -webkit-transition: none;
+    transition: none;
+  }
+}
+
+.panel {
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  margin: 0;
+  border-radius: 0;
+  color: white;
+}
+
+.panel ul li {
+  list-style: none;
+}
+
+.panel ul a {
+  padding: 8px 40px;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.panel ul a:hover {
+  color: #16365f;
+}
+
+.panel ul a.headerLinkActive {
+  color: #fff;
+}
+
+@media (max-width: 767.98px) {
+  .panel ul {
+    padding-left: 16px;
+  }
+}
+
+.panel i {
+  font-size: 8px;
+}
+/*# sourceMappingURL=LinksGroup.module.css.map */

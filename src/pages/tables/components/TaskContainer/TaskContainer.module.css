@@ -1,0 +1,49 @@
+/**
+ * Customized version of bootstrap using variables from _variables.scss.
+ * This file is loaded via separate loader thus allowing to use original bootstrap classes (e.g. .btn-default) through out the app.
+ */
+.widgetContentBlock {
+  margin: 0 24px 24px;
+}
+
+.taskBlock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 16px;
+  padding: 24px 24px 24px 0px;
+  border-radius: 8px;
+  background-color: #F7F8FB;
+}
+
+.taskDescription {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+.time {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #C7D0D9;
+}
+
+.completed {
+  background-color: #4D53E020;
+}
+
+.completed .time {
+  color: white;
+}
+/*# sourceMappingURL=TaskContainer.module.css.map */

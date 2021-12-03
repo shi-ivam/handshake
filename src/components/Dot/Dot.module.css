@@ -1,0 +1,15 @@
+/**
+ * Customized version of bootstrap using variables from _variables.scss.
+ * This file is loaded via separate loader thus allowing to use original bootstrap classes (e.g. .btn-default) through out the app.
+ */
+.dotBase {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dotLarge {
+  width: 10px;
+  height: 10px;
+}
+/*# sourceMappingURL=Dot.module.css.map */

@@ -1,0 +1,64 @@
+/**
+ * Customized version of bootstrap using variables from _variables.scss.
+ * This file is loaded via separate loader thus allowing to use original bootstrap classes (e.g. .btn-default) through out the app.
+ */
+.tableTitle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 24px 24px;
+}
+
+.tableTitle img {
+  margin-left: 16px;
+}
+
+.transactionTitleBlock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 13px 24px 13px 16px;
+}
+
+.widgetContentBlock {
+  margin: 0 24px 24px;
+}
+
+.content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 16px;
+  padding: 13px 24px 13px 16px;
+  border-radius: 8px;
+  background-color: #F7F8FB;
+}
+
+.image {
+  width: 32px;
+  height: 32px;
+}
+
+.checkboxCol {
+  width: 5%;
+}
+
+.nameCol {
+  width: 15%;
+}
+/*# sourceMappingURL=Tables.module.css.map */

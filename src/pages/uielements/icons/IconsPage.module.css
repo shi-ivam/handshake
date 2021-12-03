@@ -1,0 +1,25 @@
+/**
+ * Customized version of bootstrap using variables from _variables.scss.
+ * This file is loaded via separate loader thus allowing to use original bootstrap classes (e.g. .btn-default) through out the app.
+ */
+.iconList div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  height: 24px;
+}
+
+.iconList div span {
+  margin-left: 8px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #6b859e;
+}
+/*# sourceMappingURL=IconsPage.module.css.map */

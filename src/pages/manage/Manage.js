@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
 
 const Manage = (props) => {
-    const [items, setItems] = useState([{ id: 'invoice-1', title: "Coffee", description: "Some Good Coffee", status: "pending", url: "https://google.com", total: 24.00, items: [{ id: "1", title: "Coffee", description: "Some good coffee", price: 12.00, quantity: 2, total: 24.00 }] }, { id: 'invoice-2', title: "Coffee", description: "Some Good Coffee", status: "pending", url: "https://google.com", total: 24.00, items: [{ id: "1", title: "Coffee", description: "Some good coffee", price: 12.00, quantity: 2, total: 24.00 }] }]);
+    const [items, setItems] = useState([{ id: 'invoice-1', title: "Coffee", description: "Some Good Coffee", status: "pending", url: "/pay/a", total: 24.00, items: [{ id: "1", title: "Coffee", description: "Some good coffee", price: 12.00, quantity: 2, total: 24.00 }] }, { id: 'invoice-2', title: "Coffee", description: "Some Good Coffee", status: "pending", url: "/pay/b", total: 24.00, items: [{ id: "1", title: "Coffee", description: "Some good coffee", price: 12.00, quantity: 2, total: 24.00 }] }]);
     const handleFilter = (type) => {
 
     }
@@ -112,9 +112,9 @@ const Manage = (props) => {
                                                 <div className="btn-group-vertical w-100">
                                                     <Button className="w-10" color="primary" onClick={
                                                         () => {
-                                                            navigator.clipboard.writeText(e.url);
+                                                            navigator.clipboard.writeText(''+ 'http://localhost:3000' + e.url);
                                                             /* Alert the copied text */
-                                                            alert("Copied the text: " + e.url);
+                                                            alert("Copied the text: " + 'http://localhost:3000' + e.url);
                                                         }
                                                     }>
                                                         Payment Url
