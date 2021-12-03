@@ -6,8 +6,9 @@ import './Pay.css';
 
 const Pay = (props) => {
     const [item, setItem] = useState(undefined);
-    const [stripeOpen,setStripeOpen] = useState(false);
-    const [loadingStripe,setLoadingStripe] = useState(false);
+    const [stripeOpen, setStripeOpen] = useState(false);
+    const [loadingStripe, setLoadingStripe] = useState(false);
+    const [stripePayLoading,setStripePayLoading] = useState(false);
     const id = props.match.params.id;
     useEffect(() => {
         setTimeout(() => {
@@ -16,23 +17,21 @@ const Pay = (props) => {
         }, 3333)
     }, []);
     const handleStripePay = async () => {
-        
-        if (stripeOpen){
+
+        if (stripeOpen) {
             setStripeOpen(false);
             setLoadingStripe(false);
             return
         }
-        
+
 
         setLoadingStripe(true);
 
         const clientSecret = await fetch('http://localhost:5001')
-        .then(response => response.json())
-        .then(json => json.client_secret)
+            .then(response => response.json())
+            .then(json => json.client_secret)
         setLoadingStripe(false);
 
-        console.log(clientSecret);
-        
         const scriptElem = document.createElement('script');
         scriptElem.src = "https://js.stripe.com/v3/";
         document.body.append(scriptElem);
@@ -74,6 +73,7 @@ const Pay = (props) => {
             var form = document.getElementById("payment-form");
             form.addEventListener("submit", function (event) {
                 event.preventDefault();
+                setStripePayLoading(true);
                 // Complete payment when the submit button is clicked
                 payWithCard(stripe, card, clientSecret);
             });
@@ -86,6 +86,7 @@ const Pay = (props) => {
                         },
                     })
                     .then(function (result) {
+                        setStripePayLoading(false);
                         if (result.error) {
                             // Show error to your customer
                             console.log(result.error);
@@ -184,17 +185,16 @@ const Pay = (props) => {
                                 <div className=" w-100 col p-3 d-flex align-items-end">
                                     <Col>
                                         <form className={stripeOpen ? 'mb-3' : 'hidden'} id="payment-form" >
-                                            <div className={loadingStripe ? '' : ""}>
+                                            <div className={loadingStripe ? '' : "hidden"}>
                                                 <div className="spinner-border"></div>
                                             </div>
                                             <div id="card-element">
-                                                {/* {<!--Stripe.js injects the Card Element-->} */}
                                             </div>
                                             <button id="submit">
-                                                <div class="spinner hidden" id="spinner"></div>
-                                                <span id="button-text">Pay</span>
+                                                <div className={stripePayLoading ? 'spinner' : 'hidden'} id="spinner"></div>
+                                                <span id="button-text" className={stripePayLoading ? 'hidden' : '='}>Pay</span>
                                             </button>
-                                            <p id="card-error" className="py-2" role="alert"></p>
+                                            <p id="card-error" role="alert"></p>
                                             <p class="result-message hidden">
                                                 Payment succeeded, see the result in your
                                                 <a href="" target="_blank">Stripe dashboard.</a> Refresh the
