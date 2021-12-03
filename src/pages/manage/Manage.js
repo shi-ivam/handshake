@@ -19,6 +19,7 @@ const Manage = (props) => {
             .then((response) => response.json())
             .then((res) => { 
                 setItems(res.invoices); 
+                console.log(res.invoices)
                 setLoading(false);
                 setPage(currentPage + 1);
                 setMorePage(res.more)
@@ -46,13 +47,17 @@ const Manage = (props) => {
 
         // { title, creator, dueDate, billingAddress, items, total, description }
 
-        // fetch('/update', {
-        //     method: "POST", cache: "no-cache", body: {
-        //         type: 'status',
-        //         id: e,
-        //         page: currentPage
-        //     }
-        // })
+        fetch('http://localhost:5001/update', {
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            method: "POST", body: JSON.stringify({
+                type: 'status',
+                id: e,
+                updatedStatus:value
+            })
+        })
     }
 
     const handleLoadMore = () => {
@@ -119,7 +124,7 @@ const Manage = (props) => {
                                                         else {
                                                             document.querySelector("#" + uid).style.display = "none";
                                                         }
-                                                    }} className="w-50">
+                                                    }} className="py-2">
                                                         <FontAwesomeIcon icon={faArrowDown} />
                                                     </Button>
                                                 </Col>
