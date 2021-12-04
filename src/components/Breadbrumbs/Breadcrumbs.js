@@ -48,7 +48,7 @@ const Breadcrumbs = (props) => {
 
   return (
     <div className={s.breadcrumbs}>
-      <div className="headline-2">{breadcrumbTitle}</div>
+      <div style={{fontSize:'3rem'}}>{breadcrumbTitle}</div>
       
     </div>
   )
