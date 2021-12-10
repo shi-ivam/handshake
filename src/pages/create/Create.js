@@ -82,26 +82,29 @@ const Create = (props) => {
     }
 
 
-
     const handleSubmit = () => {
-        setCreateInvoice({ type: 'success' })
-        // fetch('/create', {
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json'
-        //     }, method: "POST", mode: "cors", body: JSON.parse({ items: items, ...itemDetails, billingAddress: { ...details } })
-        // })
-        //     .then((response) => response.json())
-        //     .then((response) => {
-        //         if (response.type === 'success') {
-        //             setCreateInvoice({ type: 'success', invoice: response.invoice })
-        //         }
-        //         else {
-        //             setCreateInvoice({ type: 'failed' })
-        //         }
-        //     })
+        fetch('http://localhost:5001/create', {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }, method: "POST", mode: "cors", body: JSON.stringify({creator:"admin", items: items, ...itemDetails, billingAddress: { ...details },dueDate:dueDate })
+        })
+            .then((response) => response.json())
+            .then((response) => {
+                if (response.type === 'success') {
+                    setCreateInvoice({ type: 'success', invoice: response.invoice })
+                }
+                else {
+                    setCreateInvoice({ type: 'failed' })
+                }
+            })
 
-        // console.log({ items: items, ...itemDetails, billingAddress: { ...details } })
+        console.log({ items: items, ...itemDetails, billingAddress: { ...details } })
+
+
+
+
+
     }
     return (
         <div>
