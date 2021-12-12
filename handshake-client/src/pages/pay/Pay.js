@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useParams } from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Row, Button } from 'reactstrap';
 import moment from 'moment';
+import server from '../../serverConfig';
 
 import './Pay.css';
 
@@ -12,7 +13,7 @@ const Pay = (props) => {
     const [completed, setCompleted] = useState(false);
     const id = props.match.params.id;
     useEffect(() => {
-        fetch('http://localhost:5001/invoice/' + id)
+        fetch(server.address + server.url + '/invoice/' + id)
             .then((response) => response.json())
             .then((response) => setItem(response.invoice))
             .catch(err => console.log(err));
@@ -28,7 +29,7 @@ const Pay = (props) => {
 
         setLoadingStripe(true);
 
-        const clientSecret = await fetch('http://localhost:5001')
+        const clientSecret = await fetch(server.address+server.url+'/payment-intent/'+item.id)
             .then(response => response.json())
             .then(json => json.client_secret)
         setLoadingStripe(false);
@@ -96,7 +97,7 @@ const Pay = (props) => {
 
                             // Change Window.localtion with this is
                             console.log("success");
-                            fetch('http://localhost:5001/complete-payment', {
+                            fetch(server.address + server.url + '/complete-payment', {
                                 headers: {
                                     'Accept': 'application/json',
                                     'Content-Type': 'application/json'
@@ -144,7 +145,7 @@ const Pay = (props) => {
                                                         {/* <hr /> */}
                                                         <Col className="mt-3 p-0">
                                                             <p><span className="font-weight-bold">Created At</span> : {moment(item.createdAt).format('DD MMMM YYYY HH:MM')}</p>
-                                                            <p><span className="font-weight-bold">Email</span> : shivam@shivam.com</p>
+                                                            <p><span className="font-weight-bold">Email</span> : {JSON.parse(item.billingAddress).email}</p>
                                                         </Col>
                                                     </Col>
                                                 </Col>
@@ -196,12 +197,12 @@ const Pay = (props) => {
                                                         <Col className="py-4 mt-3">
                                                             <p className="h4  text-center">Billing Details</p>
                                                             <hr />
-                                                            <p><span className="font-weight-bold">Name</span> : Shivam Kumar</p>
-                                                            <p><span className="font-weight-bold">Address</span> : 476E Railway Loco Colony</p>
-                                                            <p><span className="font-weight-bold">City</span> : Prayagraj</p>
-                                                            <p><span className="font-weight-bold">Pincode</span> : 211001</p>
-                                                            <p><span className="font-weight-bold">Phone No.</span> : 8840133xxx</p>
-                                                            <p><span className="font-weight-bold">Email</span> : shivam@gmail.com</p>
+                                                            <p><span className="font-weight-bold">Name</span> : {JSON.parse(item.billingAddress).firstName+" " + JSON.parse(item.billingAddress).lastName}</p>
+                                                            <p><span className="font-weight-bold">Address</span> : {JSON.parse(item.billingAddress).address}</p>
+                                                            <p><span className="font-weight-bold">Street</span> : {JSON.parse(item.billingAddress).street}</p>
+                                                            <p><span className="font-weight-bold">City</span> : {JSON.parse(item.billingAddress).city}</p>
+                                                            <p><span className="font-weight-bold">Pincode</span> : {JSON.parse(item.billingAddress).pincode}</p>
+                                                            <p><span className="font-weight-bold">Email</span> : {JSON.parse(item.billingAddress).email}</p>
                                                         </Col>
                                                     </Col>
                                                 </Col>

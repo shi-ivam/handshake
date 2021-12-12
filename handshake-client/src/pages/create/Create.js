@@ -5,6 +5,7 @@ import DatePicker from 'react-date-picker';
 import './Create.datepicker.css';
 import {Alert} from 'reactstrap';
 import s from './Create.module.scss';
+import server from '../../serverConfig';
 
 const Create = (props) => {
     const [items, setItems] = useState([{ title: "Coffee", description: "Some good coffee", price: 12.00, quantity: 2 }]);
@@ -83,7 +84,7 @@ const Create = (props) => {
 
 
     const handleSubmit = () => {
-        fetch('http://localhost:5001/create', {
+        fetch(server.address + server.url + '/create', {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'

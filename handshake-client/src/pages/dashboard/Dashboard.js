@@ -1,32 +1,27 @@
 import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import Moment from 'moment';
 import {
   Col,
   Row,
   Progress,
-  Button,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown
 } from "reactstrap";
 import Widget from "../../components/Widget/Widget.js";
 import * as eva from 'eva-icons';
 import meal1 from "../../assets/dashboard/meal-1.svg";
 import meal2 from "../../assets/dashboard/meal-2.svg";
 import meal3 from "../../assets/dashboard/meal-3.svg";
-import upgradeImage from "../../assets/dashboard/upgradeImage.svg";
-import heartRed from "../../assets/dashboard/heartRed.svg";
-import heartTeal from "../../assets/dashboard/heartTeal.svg";
-import heartViolet from "../../assets/dashboard/heartViolet.svg";
-import heartYellow from "../../assets/dashboard/heartYellow.svg";
+// import upgradeImage from "../../assets/dashboard/upgradeImage.svg";
+// import heartRed from "../../assets/dashboard/heartRed.svg";
+// import heartTeal from "../../assets/dashboard/heartTeal.svg";
+// import heartViolet from "../../assets/dashboard/heartViolet.svg";
+// import heartYellow from "../../assets/dashboard/heartYellow.svg";
 import ApexLineChart from "./components/ApexLineChart";
 import { useEffect } from "react";
 import s from "./Dashboard.module.scss";
 import shoppingCart from "../../assets/dashboard/shopping-bag.png";
 import paid from "../../assets/dashboard/paid.png";
 import wallclock from "../../assets/dashboard/wall-clock.png";
+import server from '../../serverConfig';
 import cancel from "../../assets/dashboard/cancel.png";
 
 const Dashboard = () => {
@@ -46,7 +41,7 @@ const Dashboard = () => {
       .map((checkbox, index) => index === id ? !checkbox : checkbox))
   }
   const fetchData = () => {
-    fetch("http://localhost:5001/series?lastDays=7")
+    fetch(server.address + server.url + "/series?lastDays=7")
       .then((response) => response.json())
       .then((data) => {
         setChartSeries(data.series);
@@ -145,7 +140,7 @@ const Dashboard = () => {
                           />
                         </div>
                         <div className="d-flex flex-column">
-                          <p className="body-2">{invoice.id}</p>
+                          <p className="body-2">{invoice.title}</p>
                           <p className="body-3 muted">{Moment(invoice.createdAt).format('DD MMMM, YYYY')}</p>
                         </div>
                       </div>

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Col, Row, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
+import server from '../../serverConfig';
 
 const Manage = (props) => {
     const [items, setItems] = useState([]);
@@ -15,7 +16,7 @@ const Manage = (props) => {
     useEffect(() => {
         setLoading(true);
 
-        fetch('http://localhost:5001/invoices?page='+currentPage.toString(), { mode: 'cors', method: "GET" })
+        fetch(server.address + server.url + '/invoices?page='+currentPage.toString(), { mode: 'cors', method: "GET" })
             .then((response) => response.json())
             .then((res) => { 
                 setItems(res.invoices); 
@@ -47,7 +48,7 @@ const Manage = (props) => {
 
         // { title, creator, dueDate, billingAddress, items, total, description }
 
-        fetch('http://localhost:5001/update', {
+        fetch(server.address + server.url + '/update', {
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
@@ -63,7 +64,7 @@ const Manage = (props) => {
     const handleLoadMore = () => {
         setLoading(true);
         console.log(morePage);
-        fetch('http://localhost:5001/invoices?page='+currentPage.toString(), { mode: 'cors', method: "GET" })
+        fetch(server.address + server.url + '/invoices?page='+currentPage.toString(), { mode: 'cors', method: "GET" })
             .then((response) => response.json())
             .then((res) => {
                 if (currentPage > 1){
@@ -108,7 +109,7 @@ const Manage = (props) => {
                                                     <h5>{e.title}</h5>
                                                     <p>{e.description}</p>
                                                     <hr />
-                                                    <p>Created At : {moment().format('DD MMMM YYYY HH:MM')}</p>
+                                                    <p>Created At : {moment(e.createdAt).format('DD MMMM YYYY HH:MM')}</p>
                                                     <p>Email : shivam@shivam.com</p>
                                                 </Col>
                                                 <Col className="d-flex flex-column py-2 justify-content-between align-items-center">

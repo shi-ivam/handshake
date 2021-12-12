@@ -17,15 +17,15 @@ app.use(cors({
 }));
 
 
-async function paymentIntent() {
+async function paymentIntent(data) {
     return await stripe.paymentIntents.create({
         shipping: {
-            name: "Donkey Kong",
+            name: JSON.parse(data.billingAddress).firstName + ' ' + JSON.parse(data.billingAddress).lastName,
             address: {
-                postal_code: 211001
+                postal_code: JSON.parse(data.billingAddress).pincode
             }
         },
-        amount: 200000,
+        amount: data.total*100,
         currency: 'inr',
         payment_method_types: ['card'],
     });
@@ -33,15 +33,25 @@ async function paymentIntent() {
 }
 
 
-app.get('/', (req, res) => {
-    paymentIntent().then((payment) => {
-        res.send(payment);
-        console.log("Done")
-    }).catch(err => console.log)
+app.get('/api/payment-intent/:id', (req, res) => {
+    const id = req.params.id;
+    console.log('--------')
+    console.log(id)
+    console.log('--------')
+    Invoices.findOne({  where: { "id": id } })
+    .then(invoice => {
+        // console.log(invoice)
+        paymentIntent(invoice).then((payment) => {
+            console.log(payment)
+            res.send(payment);
+        }).catch(err => {res.send({type:'failed',err})})
+
+    })
+    .catch(err => console.log(err))
 
 })
 
-app.post('/complete-payment', (req, res) => {
+app.post('/api/complete-payment', (req, res) => {
     const { id } = req.body;
 
     // Save Payment id
@@ -56,7 +66,7 @@ app.post('/complete-payment', (req, res) => {
 })
 
 
-app.get('/invoice/:id', (req, res) => {
+app.get('/api/invoice/:id', (req, res) => {
     const { id } = req.params;
     console.log(id)
     Invoices.findOne({ where: { "id": id, "status": 'pending' } })
@@ -73,7 +83,7 @@ app.get('/invoice/:id', (req, res) => {
         .catch(err => res.send(err))
 })
 
-app.post('/create', async (req, res) => {
+app.post('/api/create', async (req, res) => {
 
     const { title, creator, dueDate, billingAddress, items, total, description } = req.body;
     try {
@@ -94,12 +104,12 @@ app.post('/create', async (req, res) => {
     }
 })
 
-app.post('/delete', async (req, res) => {
+app.post('/api/delete', async (req, res) => {
     const { id } = req.body;
     await Invoices.destroy({ where: { id: id } })
 })
 
-app.post('/update', (req, res) => {
+app.post('/api/update', (req, res) => {
 
     console.log('update req')
     const { type, id } = req.body;
@@ -123,7 +133,7 @@ app.post('/update', (req, res) => {
     }
 })
 
-app.get('/invoices', (req, res) => {
+app.get('/api/invoices', (req, res) => {
     const { page } = req.query;
     console.log(page)
     const itemsPerPage = 5;
@@ -140,12 +150,14 @@ app.get('/invoices', (req, res) => {
             }
             console.log(more)
 
+            invoices = invoices.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+
             res.send({ invoices: invoices.slice((page - 1) * itemsPerPage, page * itemsPerPage), more: more, currentPage: page });
         })
         .catch(err => console.log(err))
 })
 
-app.get('/series', async (req, res) => {
+app.get('/api/series', async (req, res) => {
     const { lastDays } = req.query;
     let d = new Date();
     d.setHours(0, 0, 0, 0);
@@ -154,12 +166,13 @@ app.get('/series', async (req, res) => {
     beforelastWeekInvoices = beforelastWeekInvoices.filter(invoice => !lastWeekInvoices.find(invoice2 => invoice2.id == invoice.id));
 
     lastWeekInvoices = lastWeekInvoices.sort((a, b) => {if(a.createdAt > b.createdAt) return -1; else return 1})
+    beforelastWeekInvoices = beforelastWeekInvoices.sort((a, b) => {if(a.createdAt > b.createdAt) return -1; else return 1})
 
     // map to orders only
 
     function getListofDays() {
         let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-        console.log('Day  - ', d.getDay())
+        // console.log('Day  - ', d.getDay())
         frontdays = days.slice(0, d.getDay());
         restDays = days.slice(d.getDay(), 7);
         return restDays.concat(frontdays);
@@ -174,28 +187,37 @@ app.get('/series', async (req, res) => {
 
 
     function mapInvoicesToDays(invoices, days) {
+        // console.log(days)
         const final = []
         for (let i = 0; i < days.length; i++) {
-            const thatDayInvoices = invoices.filter(invoice => invoice.createdAt.getDay() == i)
-            let totalofThatDayInvoices = 0;
-            if (thatDayInvoices.length > 0) {
-                for (let x = 0; x < thatDayInvoices.length; x++) {
-                    totalofThatDayInvoices += thatDayInvoices[x].total
-                }
+            const day = days[i];
+            const thatDayInvoices = invoices.filter(invoice => ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"][invoice.createdAt.getDay()-1] == day);
+            // console.log({day,total:thatDayInvoices.map(e => e.total)})
+            let thatDayTotal = 0;
+            for (let x = 0; x < thatDayInvoices.length;x++){
+                // console.log('-------------------------')
+                // console.log('Day - '+ thatDayInvoices[x].createdAt.getDay());
+                // console.log('Total - '+ thatDayInvoices[x].total)
+                // console.log('-------------------------')
+                thatDayTotal = thatDayInvoices[x].total + thatDayTotal;
             }
-            final.push(totalofThatDayInvoices)
+            final.push(thatDayTotal);
         }
+        // console.log(days)
+        
+        // console.log(invoices.map(invoice => ({day:invoice.createdAt.getDay(),total:invoice.total})))
+        // console.log(final)
         return final
     }
 
 
 
-
+    console.log(JSON.stringify({days: getListofDays(),series: [{ name: "Amount", data: mapInvoicesToDays(lastWeekInvoices,getListofDays()) }, { name: "Last Week Amount", data: mapInvoicesToDays(beforelastWeekInvoices,getListofDays()) },]}))
     res.send({ days: getListofDays(),lastWeekInvoices,orders:[lastWeekInvoices.length,beforelastWeekInvoices.length], series: [{ name: "Amount", data: mapInvoicesToDays(lastWeekInvoices,getListofDays()) }, { name: "Last Week Amount", data: mapInvoicesToDays(beforelastWeekInvoices,getListofDays()) },] });
 
 })
 
-app.listen(5001, async () => {
+app.listen(5000, async () => {
 
     await sequelize.authenticate()
     // await sequelize.sync({force:true})
