@@ -102,7 +102,7 @@ app.post('/api/create', async (req, res) => {
             }
             return total
         }
-        const invoice = await Invoices.create({ title, creator, dueDate, billingAddress,status:"pending", creator, items, dueDate, total: calculateTotalFromItemsArray(items), description, id: uuid.v4() });
+        const invoice = await Invoices.create({ title, creator, dueDate, billingAddress:JSON.stringify(billingAddress),status:"pending", creator, items:JSON.stringify(items), dueDate, total: calculateTotalFromItemsArray(items), description, id: uuid.v4() });
 
         return res.json({ title, creator, dueDate, billingAddress, items, total, description, type: 'success' });
     } catch (err) {
