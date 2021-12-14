@@ -1,14 +1,21 @@
 const stripe = require('stripe')('sk_test_F2XOGY9UWjwyLYkF4OohylLd00q07mKaat');
+const dotenv = require('dotenv');
+
+
+dotenv.config()
 const express = require('express');
 const cors = require('cors');
 const { sequelize, Invoices } = require('./models');
 const bodyParser = require('body-parser');
 const uuid = require('uuid');
-
+const path = require('path');
 
 
 const app = express();
 
+
+
+app.use(express.static(path.join(__dirname,'html','handshake-client','build')))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
@@ -95,7 +102,7 @@ app.post('/api/create', async (req, res) => {
             }
             return total
         }
-        const invoice = await Invoices.create({ title, creator, dueDate, billingAddress, creator, items, dueDate, total: calculateTotalFromItemsArray(items), description, id: uuid.v4() });
+        const invoice = await Invoices.create({ title, creator, dueDate, billingAddress:JSON.stringify(billingAddress),status:"pending", creator, items:JSON.stringify(items), dueDate, total: calculateTotalFromItemsArray(items), description, id: uuid.v4() });
 
         return res.json({ title, creator, dueDate, billingAddress, items, total, description, type: 'success' });
     } catch (err) {
@@ -217,10 +224,15 @@ app.get('/api/series', async (req, res) => {
 
 })
 
-app.listen(5000, async () => {
+
+app.get("*",(req,res) => {
+    res.sendFile(path.join(__dirname,'html','handshake-client','build','index.html'))
+})
+
+app.listen(process.env.PORT || 5000, async () => {
 
     await sequelize.authenticate()
-    // await sequelize.sync({force:true})
+    await sequelize.sync({force:true})
     console.log('Database Connected!')
 }
 )

@@ -168,14 +168,26 @@ const Manage = (props) => {
                                                     <div className="btn-group-vertical w-100">
                                                         <Button className="w-10" color="primary" onClick={
                                                             () => {
-                                                                navigator.clipboard.writeText('' + 'http://localhost:3000/pay/' + e.id);
+                                                                navigator.clipboard.writeText('' + server.address+ '/pay/' + e.id);
                                                                 /* Alert the copied text */
-                                                                alert("Copied the text: " + 'http://localhost:3000/pay/' + e.id);
+                                                                alert("Copied the text: " +  server.address + '/pay/' + e.id);
                                                             }
                                                         }>
                                                             Payment Url
                                                         </Button>
-                                                        <Button className="w-100" color="secondary">
+                                                        <Button className="w-100" color="secondary" onClick={() => {
+                                                            fetch(server.address + server.url + '/delete', {
+                                                                headers: {
+                                                                  'Accept': 'application/json',
+                                                                  'Content-Type': 'application/json'
+                                                                },
+                                                                method: "POST", body: JSON.stringify({
+                                                                    id: e.id,
+                                                                })
+                                                            })
+                                                            
+                                                            setItems(items.filter(e => e.id !== e.id))
+                                                        }}>
                                                             Delete
                                                         </Button>
                                                     </div>

@@ -22,7 +22,6 @@ module.exports = (sequelize, DataTypes) => {
     total: DataTypes.FLOAT,
     status:{
       type:DataTypes.STRING,
-      defaultValue:'pending'
     },
     id:{
       type:DataTypes.STRING,
