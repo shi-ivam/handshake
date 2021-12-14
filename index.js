@@ -4,11 +4,15 @@ const cors = require('cors');
 const { sequelize, Invoices } = require('./models');
 const bodyParser = require('body-parser');
 const uuid = require('uuid');
+const path = require('path');
+const dotenv = require('dotenv');
 
+
+dotenv.config()
 
 
 const app = express();
-
+app.use(express.static(path.join(__dirname,'html','handshake-client','build')))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
@@ -217,7 +221,12 @@ app.get('/api/series', async (req, res) => {
 
 })
 
-app.listen(5000, async () => {
+
+app.get("*",(req,res) => {
+    res.sendFile(path.join(__dirname,'html','handshake-client','build','index.html'))
+})
+
+app.listen(process.env.NODE_ENV === "production" ? process.env.PORT : 5000, async () => {
 
     await sequelize.authenticate()
     // await sequelize.sync({force:true})

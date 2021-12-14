@@ -1,4 +1,4 @@
 export default {
-    address:"http://localhost:5000",
+    address:"",
     url:"/api"
 }
