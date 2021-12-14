@@ -5,6 +5,7 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
+console.log(env)
 const config = require(__dirname + '/../config/config.js')[env];
 const db = {};
 
@@ -12,13 +13,19 @@ let sequelize;
 if (env == "production") {
   console.log('prod')
   sequelize = new Sequelize(process.env.DATABASE_URL, {
-    url:process.env.DATABASE_URL,
+    // url:process.env.DATABASE_URL,
     dialect: 'postgres',
-    dialectOptions: {
-      ssl: true,
-      rejectUnauthorized: false 
+    ssl: {
+      rejectUnauthorized: false
+    },
+    dialectOptions: {ssl: {rejectUnauthorized:false}
     }
   });
+  const { Client } = require('pg');
+
+
+// client.connect()
+// .then((d) => console.log(d))
 }
 else if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);

@@ -1,17 +1,20 @@
 const stripe = require('stripe')('sk_test_F2XOGY9UWjwyLYkF4OohylLd00q07mKaat');
+const dotenv = require('dotenv');
+
+
+dotenv.config()
 const express = require('express');
 const cors = require('cors');
 const { sequelize, Invoices } = require('./models');
 const bodyParser = require('body-parser');
 const uuid = require('uuid');
 const path = require('path');
-const dotenv = require('dotenv');
-
-
-dotenv.config()
 
 
 const app = express();
+
+
+
 app.use(express.static(path.join(__dirname,'html','handshake-client','build')))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
