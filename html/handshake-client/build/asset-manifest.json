@@ -1,0 +1,40 @@
+{
+  "files": {
+    "main.css": "./static/css/main.a3075b79.chunk.css",
+    "main.js": "./static/js/main.060ad598.chunk.js",
+    "main.js.map": "./static/js/main.060ad598.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.51c160d8.js",
+    "runtime-main.js.map": "./static/js/runtime-main.51c160d8.js.map",
+    "static/css/2.21688198.chunk.css": "./static/css/2.21688198.chunk.css",
+    "static/js/2.c3fd89b2.chunk.js": "./static/js/2.c3fd89b2.chunk.js",
+    "static/js/2.c3fd89b2.chunk.js.map": "./static/js/2.c3fd89b2.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/2.21688198.chunk.css.map": "./static/css/2.21688198.chunk.css.map",
+    "static/css/main.a3075b79.chunk.css.map": "./static/css/main.a3075b79.chunk.css.map",
+    "static/js/2.c3fd89b2.chunk.js.LICENSE.txt": "./static/js/2.c3fd89b2.chunk.js.LICENSE.txt",
+    "static/media/app.scss": "./static/media/la-solid-900.a8130346.svg",
+    "static/media/basketIcon.4df1a1f6.svg": "./static/media/basketIcon.4df1a1f6.svg",
+    "static/media/calendarIcon.2e2bc501.svg": "./static/media/calendarIcon.2e2bc501.svg",
+    "static/media/cancel.5949e424.png": "./static/media/cancel.5949e424.png",
+    "static/media/envelopeIcon.8138b886.svg": "./static/media/envelopeIcon.8138b886.svg",
+    "static/media/errorImage.e4beba8e.svg": "./static/media/errorImage.e4beba8e.svg",
+    "static/media/favicon.f191d9ca.png": "./static/media/favicon.f191d9ca.png",
+    "static/media/loginImage.f6d04a8f.svg": "./static/media/loginImage.f6d04a8f.svg",
+    "static/media/logoutOutlined.d87dc0fa.svg": "./static/media/logoutOutlined.d87dc0fa.svg",
+    "static/media/mariaImage.e5327aa4.jpg": "./static/media/mariaImage.e5327aa4.jpg",
+    "static/media/meal-1.b0d6c569.svg": "./static/media/meal-1.b0d6c569.svg",
+    "static/media/meal-2.10bc6027.svg": "./static/media/meal-2.10bc6027.svg",
+    "static/media/meal-3.13c73770.svg": "./static/media/meal-3.13c73770.svg",
+    "static/media/notificationImage.5f55e802.jpg": "./static/media/notificationImage.5f55e802.jpg",
+    "static/media/registerImage.cdcf25ca.svg": "./static/media/registerImage.cdcf25ca.svg",
+    "static/media/user.3ff01505.svg": "./static/media/user.3ff01505.svg",
+    "static/media/wall-clock.ea629724.png": "./static/media/wall-clock.ea629724.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.51c160d8.js",
+    "static/css/2.21688198.chunk.css",
+    "static/js/2.c3fd89b2.chunk.js",
+    "static/css/main.a3075b79.chunk.css",
+    "static/js/main.060ad598.chunk.js"
+  ]
+}
