@@ -1,4 +1,4 @@
-{
+export default {
   "development": {
     "username": "postgres",
     "password": "postgres",
@@ -14,10 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "uaznvregrceqsz",
-    "password": "3876c723c7b5da0b0640ec7c663c07d711db86056927387ea9f6dae5d6df2f71",
-    "database": "d9qr0098f3bbo0",
-    "host": "ec2-3-248-103-75.eu-west-1.compute.amazonaws.com",
-    "dialect": "postgres"
+    "username": "",
+    "password": "",
+    "database": "",
+    "host": "",
+    "dialect": ""
   }
 }
