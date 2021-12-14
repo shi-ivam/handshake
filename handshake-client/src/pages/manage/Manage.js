@@ -186,7 +186,7 @@ const Manage = (props) => {
                                                                 })
                                                             })
                                                             
-                                                            setItems(items.filter(e => e.id !== e.id))
+                                                            setItems(items.filter(item => item.id !== e.id))
                                                         }}>
                                                             Delete
                                                         </Button>
