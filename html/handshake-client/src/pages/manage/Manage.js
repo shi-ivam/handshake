@@ -175,7 +175,19 @@ const Manage = (props) => {
                                                         }>
                                                             Payment Url
                                                         </Button>
-                                                        <Button className="w-100" color="secondary">
+                                                        <Button className="w-100" color="secondary" onClick={() => {
+                                                            fetch(server.address + server.url + '/delete', {
+                                                                headers: {
+                                                                  'Accept': 'application/json',
+                                                                  'Content-Type': 'application/json'
+                                                                },
+                                                                method: "POST", body: JSON.stringify({
+                                                                    id: e.id,
+                                                                })
+                                                            })
+                                                            
+                                                            setItems(items.filter(e => e.id !== e.id))
+                                                        }}>
                                                             Delete
                                                         </Button>
                                                     </div>
