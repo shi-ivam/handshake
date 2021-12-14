@@ -226,7 +226,7 @@ app.get("*",(req,res) => {
     res.sendFile(path.join(__dirname,'html','handshake-client','build','index.html'))
 })
 
-app.listen(process.env.NODE_ENV == "production" ? process.env.PORT : 5000, async () => {
+app.listen(process.env.PORT || 5000, async () => {
 
     await sequelize.authenticate()
     // await sequelize.sync({force:true})
