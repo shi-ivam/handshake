@@ -232,7 +232,7 @@ app.get("*",(req,res) => {
 app.listen(process.env.PORT || 5000, async () => {
 
     await sequelize.authenticate()
-    // 
+    // dwad
     await sequelize.sync()
     console.log('Database Connected!')
 }
