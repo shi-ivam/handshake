@@ -168,9 +168,9 @@ const Manage = (props) => {
                                                     <div className="btn-group-vertical w-100">
                                                         <Button className="w-10" color="primary" onClick={
                                                             () => {
-                                                                navigator.clipboard.writeText('' + 'http://localhost:3000/pay/' + e.id);
+                                                                navigator.clipboard.writeText('' + server.address+ '/pay/' + e.id);
                                                                 /* Alert the copied text */
-                                                                alert("Copied the text: " + 'http://localhost:3000/pay/' + e.id);
+                                                                alert("Copied the text: " +  server.address + '/pay/' + e.id);
                                                             }
                                                         }>
                                                             Payment Url
