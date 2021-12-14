@@ -226,6 +226,7 @@ app.get('/api/series', async (req, res) => {
 
 
 app.get("*",(req,res) => {
+    // Only for Serving Index File in Production
     res.sendFile(path.join(__dirname,'html','handshake-client','build','index.html'))
 })
 
