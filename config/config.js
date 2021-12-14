@@ -1,4 +1,4 @@
-{
+module.exports = ({
   "development": {
     "username": "postgres",
     "password": "postgres",
@@ -14,10 +14,9 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "",
-    "password": "",
-    "database": "",
-    "host": "",
+    "url":process.env.DATABASE_URL,
+    
+    "dialectOptions": {"ssl": {"rejectUnauthorized":false}},
     "dialect": "postgres"
   }
-}
+})
