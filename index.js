@@ -102,7 +102,7 @@ app.post('/api/create', async (req, res) => {
             }
             return total
         }
-        const invoice = await Invoices.create({ title, creator, dueDate, billingAddress, creator, items, dueDate, total: calculateTotalFromItemsArray(items), description, id: uuid.v4() });
+        const invoice = await Invoices.create({ title, creator, dueDate, billingAddress,status:"pending", creator, items, dueDate, total: calculateTotalFromItemsArray(items), description, id: uuid.v4() });
 
         return res.json({ title, creator, dueDate, billingAddress, items, total, description, type: 'success' });
     } catch (err) {
@@ -232,7 +232,7 @@ app.get("*",(req,res) => {
 app.listen(process.env.PORT || 5000, async () => {
 
     await sequelize.authenticate()
-    // await sequelize.sync({force:true})
+    await sequelize.sync({force:true})
     console.log('Database Connected!')
 }
 )
