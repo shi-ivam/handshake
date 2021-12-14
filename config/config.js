@@ -1,4 +1,4 @@
-export default {
+module.exports = ({
   "development": {
     "username": "postgres",
     "password": "postgres",
@@ -20,4 +20,4 @@ export default {
     "host": "",
     "dialect": ""
   }
-}
+})
