@@ -42,7 +42,7 @@ const Sidebar = (props) => {
           iconName={<i className={'eva eva-home-outline'}/>}
           link="/dashboard"
           index="dashboard"
-          badge="9"
+          badge=""
         />
         <LinksGroup
           onActiveSidebarItemChange={activeItem => props.dispatch(changeActiveSidebarItem(activeItem))}

@@ -128,7 +128,15 @@ const Dashboard = () => {
                     </DropdownMenu>
                   </UncontrolledDropdown> */}
                 </div>
-                {lastWeekInvoices.slice(0,4).map((invoice) =>
+                {
+                  lastWeekInvoices.length === 0 ?
+                    <div style={{height:"100px"}} className="d-flex flex-col justify-content-center align-items-center">
+                      <p className="h6 text-muted">
+                        You have no invoices
+                      </p>
+                    </div>
+                    :
+                    lastWeekInvoices.slice(0,4).map((invoice) =>
                   <div key={invoice.id} className={`mt-4 ${s.widgetBlock}`}>
                     <div className={s.widgetBody}>
                       <div className="d-flex">
@@ -149,7 +157,8 @@ const Dashboard = () => {
                       </div>
                     </div>
                   </div>
-                )}
+                )
+                }
               </Widget>
             </Col>
           </Row>

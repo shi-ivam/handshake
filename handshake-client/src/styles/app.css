@@ -10,9 +10,9 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-@import url(d:\React\sofia-react-template\node_modules\line-awesome\dist\line-awesome\css\line-awesome.css);
-@import url(d:\React\sofia-react-template\node_modules\animate.css\animate.css);
-@import url(d:\React\sofia-react-template\node_modules\eva-icons\style\eva-icons.css);
+@import url(f:\Projects\handshake\handshake-client\node_modules\line-awesome\dist\line-awesome\css\line-awesome.css);
+@import url(f:\Projects\handshake\handshake-client\node_modules\animate.css\animate.css);
+@import url(f:\Projects\handshake\handshake-client\node_modules\eva-icons\style\eva-icons.css);
 :root {
   --blue: #00A5FF;
   --indigo: #6610f2;

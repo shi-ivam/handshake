@@ -57,11 +57,11 @@ const Register = (props) => {
                 <p className="auth-header mb-0">Sign Up</p>
                 <div className="logo-block">
                   <SofiaLogo />
-                  <p className="mb-0">SOFIA</p>
+                  <p className="mb-0">Handshake</p>
                 </div>
               </div>
               <div className="auth-info my-2">
-                <p>This is a real app with Node.js backend - use <b>"admin@flatlogic.com / password"</b> to login!</p>
+                <p>This is a real app with Node.js backend - use <b>"admin@handshake.com / password"</b> to login!</p>
               </div>
               <form onSubmit={(event => doRegister(event))}>
                 <FormGroup className="my-3">
@@ -74,13 +74,13 @@ const Register = (props) => {
                     type="email"
                     required
                     name="email"
-                    placeholder="Henry Monk"
+                    placeholder="Henry@Monk.com"
                   />
                 </FormGroup>
                 <FormGroup  className="my-3">
                   <div className="d-flex justify-content-between">
                     <FormText>Password</FormText>
-                    <Link to="/error">Forgot password?</Link>
+                    {/* <Link to="/error">Forgot password?</Link> */}
                   </div>
                   <Input
                     id="password"
@@ -97,7 +97,7 @@ const Register = (props) => {
                   <Button className="rounded-pill my-3" type="submit" color="secondary-red">Sign Up</Button>
                 </div>
                 <p className="dividing-line my-3">&#8195;Or&#8195;</p>
-                <div className="d-flex align-items-center my-3">
+                {/* <div className="d-flex align-items-center my-3">
                   <p className="social-label mb-0">Login with</p>
                   <div className="socials">
                     <a href="https://flatlogic.com/"><GoogleIcon /></a>
@@ -106,7 +106,7 @@ const Register = (props) => {
                     <a href="https://flatlogic.com/"><GithubIcon /></a>
                     <a href="https://flatlogic.com/"><LinkedinIcon /></a>
                   </div>
-                </div>
+                </div> */}
                 <Link to="/login">Enter the account</Link>
               </form>
             </Widget>

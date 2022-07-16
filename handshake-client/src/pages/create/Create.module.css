@@ -1,0 +1,34 @@
+/**
+ * Customized version of bootstrap using variables from _variables.scss.
+ * This file is loaded via separate loader thus allowing to use original bootstrap classes (e.g. .btn-default) through out the app.
+ */
+.submitBtn {
+  margin-top: 1rem;
+  padding: 1rem 5rem;
+}
+
+@media (max-width: 978px) {
+  .container {
+    padding: 0;
+    margin: 0;
+  }
+  body {
+    padding: 0;
+  }
+  .navbar-fixed-top, .navbar-fixed-bottom, .navbar-static-top {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  table {
+    margin: 20px 0;
+  }
+  h4 {
+    text-align: center !important;
+  }
+  td {
+    padding: 0.5rem !important;
+    font-size: 0.8rem;
+  }
+}
+/*# sourceMappingURL=Create.module.css.map */
